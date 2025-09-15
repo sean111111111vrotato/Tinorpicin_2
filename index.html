@@ -112,6 +112,24 @@
         border-bottom: none;
     }
 
+    .buy-btn {
+        display: inline-block;
+        margin-top: 40px;
+        background: linear-gradient(135deg, #ff82b2, #6fd3f7);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 15px 35px;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .buy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
     @keyframes fadeIn {
         from {opacity: 0; transform: translateY(10px);}
         to {opacity: 1; transform: translateY(0);}
@@ -172,6 +190,11 @@
 
 <section class="section">
     <h2>⚡ Tinorpicin Helps Motivate and Stops Procrastination in as Fast as 7 Minutes!</h2>
+
+    <!-- 🎵 RICKROLL BUTTON -->
+    <a class="buy-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+        Buy Now
+    </a>
 </section>
 
 </body>
