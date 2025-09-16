@@ -249,74 +249,13 @@
     </a>
 </section>
 
-<!-- 🎮 Tic Tac Toe -->
 <section class="section">
-  <h2>Play Tic Tac Toe</h2>
-  <div id="tic-tac-toe">
-    <div class="board">
-      <div class="cell" data-index="0"></div>
-      <div class="cell" data-index="1"></div>
-      <div class="cell" data-index="2"></div>
-      <div class="cell" data-index="3"></div>
-      <div class="cell" data-index="4"></div>
-      <div class="cell" data-index="5"></div>
-      <div class="cell" data-index="6"></div>
-      <div class="cell" data-index="7"></div>
-      <div class="cell" data-index="8"></div>
-    </div>
-    <p id="status">Player X's turn</p>
-    <button id="restart">Restart</button>
-  </div>
+  <h2>Want More Fun?</h2>
+  <a class="buy-btn" href="https://sean111111111vrotato.github.io/2048/" target="_blank">
+      Play 2048
+  </a>
 </section>
-
-<script>
-  const cells = document.querySelectorAll('.cell');
-  const statusText = document.getElementById('status');
-  const restartBtn = document.getElementById('restart');
-  let currentPlayer = 'X';
-  let board = Array(9).fill('');
-  let gameActive = true;
-
-  const winCombos = [
-    [0,1,2], [3,4,5], [6,7,8],
-    [0,3,6], [1,4,7], [2,5,8],
-    [0,4,8], [2,4,6]
-  ];
-
-  function handleClick(e) {
-    const i = e.target.dataset.index;
-    if (board[i] !== '' || !gameActive) return;
-    board[i] = currentPlayer;
-    e.target.textContent = currentPlayer;
-    if (checkWin()) {
-      statusText.textContent = `Player ${currentPlayer} Wins!`;
-      gameActive = false;
-    } else if (!board.includes('')) {
-      statusText.textContent = "It's a Draw!";
-      gameActive = false;
-    } else {
-      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-      statusText.textContent = `Player ${currentPlayer}'s turn`;
-    }
-  }
-
-  function checkWin() {
-    return winCombos.some(combo =>
-      combo.every(i => board[i] === currentPlayer)
-    );
-  }
-
-  function restart() {
-    board.fill('');
-    cells.forEach(cell => cell.textContent = '');
-    currentPlayer = 'X';
-    statusText.textContent = "Player X's turn";
-    gameActive = true;
-  }
-
-  cells.forEach(cell => cell.addEventListener('click', handleClick));
-  restartBtn.addEventListener('click', restart);
-</script>
 
 </body>
 </html>
+
