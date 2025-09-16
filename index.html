@@ -2,201 +2,320 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Tinorpicin 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinorpicin — No Delay</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  h1 {
-    font-size: 3em;
-    margin-top: 40px;
-    animation: rainbow 3s linear infinite;
-  }
-  @keyframes rainbow {
-    0% { color: #ff0000; }
-    20% { color: #ffa500; }
-    40% { color: #ffff00; }
-    60% { color: #00ff00; }
-    80% { color: #0000ff; }
-    100% { color: #ff00ff; }
-  }
-  p {
-    font-size: 1.2em;
-    margin: 20px auto;
-    width: 80%;
-    color: #333;
-    animation: colorchange 4s linear infinite;
-  }
-  @keyframes colorchange {
-    0% { color: #ff0066; }
-    25% { color: #6600ff; }
-    50% { color: #00ccff; }
-    75% { color: #00ff66; }
-    100% { color: #ffcc00; }
-  }
-  .section {
-    padding: 40px 20px;
-    margin: 40px auto;
-    width: 80%;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.5);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    animation: rainbowborder 5s linear infinite;
-  }
-  @keyframes rainbowborder {
-    0% { border: 5px solid #ff0000; }
-    25% { border: 5px solid #00ff00; }
-    50% { border: 5px solid #0000ff; }
-    75% { border: 5px solid #ffff00; }
-    100% { border: 5px solid #ff00ff; }
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-  /* Floating Buy Now button */
-  #buy-now {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #ff6fd8, #3813c2);
-    color: white;
-    padding: 20px 40px;
-    border-radius: 50px 50px 0 0;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2em;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
-    z-index: 9999;
-    transition: transform 0.2s;
-  }
-  #buy-now:hover {
-    transform: translateX(-50%) scale(1.1);
-  }
+    * {
+        box-sizing: border-box;
+    }
 
-  /* Alchemy game */
-  #alchemy {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    width: 80%;
-    margin: 40px auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  }
-  #elements, #discovered {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  .element {
-    padding: 10px 20px;
-    background: #f0f0f0;
-    border-radius: 12px;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .element:hover {
-    transform: scale(1.1);
-    background: #d0d0ff;
-  }
-  #selected {
-    margin: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-  }
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #f8fafc;
+        color: #333;
+    }
+
+    header {
+        background: linear-gradient(135deg, #6fd3f7, #f8a5c2);
+        color: white;
+        text-align: center;
+        padding: 50px 20px 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header::after {
+        content: "💊";
+        position: absolute;
+        font-size: 100px;
+        opacity: 0.2;
+        top: 10px;
+        right: 20px;
+        transform: rotate(-20deg);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    header h2 {
+        margin-top: 10px;
+        font-weight: 400;
+    }
+
+    .section {
+        padding: 60px 20px;
+        text-align: center;
+        animation: fadeIn 0.7s ease both;
+    }
+
+    .section:nth-child(even) {
+        background: #f0f9ff;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #444;
+    }
+
+    p {
+        max-width: 650px;
+        margin: 0 auto 20px;
+        line-height: 1.6;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        justify-items: center;
+        padding: 20px 0;
+    }
+
+    .card {
+        background: white;
+        padding: 15px 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        width: 100%;
+        max-width: 300px;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+    }
+
+    ul.ingredients {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 350px;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        text-align: left;
+        padding: 25px 30px;
+    }
+
+    ul.ingredients li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    ul.ingredients li:last-child {
+        border-bottom: none;
+    }
+
+    .buy-btn {
+        display: inline-block;
+        margin-top: 40px;
+        background: linear-gradient(135deg, #ff82b2, #6fd3f7);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 15px 35px;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .buy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* --- Tic Tac Toe --- */
+    #tic-tac-toe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 5px;
+    }
+
+    .cell {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.1s;
+    }
+
+    .cell:hover {
+        transform: scale(1.05);
+        background: #f8f8f8;
+    }
+
+    #status {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    #restart {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        background: #ff6b6b;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    #restart:hover {
+        background: #ff4b4b;
+    }
 </style>
 </head>
 <body>
-  <h1>Tinorpicin 2</h1>
 
-  <div class="section">
-    <p>
-      Tinorpicin works quickly to help users focus and get started on tasks they've been procrastinating on.
-      Many users said it increased their motivation, organization, and caused a noticeable reduction in distractions.
-    </p>
+<header>
+    <h1>Alacer Pharma</h1>
+    <h2>Tinorpicin — No Delay</h2>
+    <p>Unlock a world of speed and productivity!</p>
+</header>
+
+<section class="section">
+    <h2>What Does Tinorpicin Do?</h2>
+    <p>Tinorpicin is the cure for late submissions and midnight cramming. With its fast-acting motivational formula, it clears mental fog, boosts focus, and turns "later" into "now." Perfect for anyone struggling to start tasks, Tinorpicin encourages productive habits and helps you tackle your day with energy and motivation.</p>
+</section>
+
+<section class="section">
+    <h2>Fun Facts About Tinorpicin</h2>
+    <p>Tinorpicin works quickly to help users focus and get started on tasks they've been procrastinating on. Many users said it increased their motivation, organization, and a noticeable reduction in distractions. While results may vary, most users feel more productive within 5–10 minutes of taking it, making it a handy tool for tackling projects, study sessions, or busy workdays.</p>
+</section>
+
+<section class="section">
+    <h2>The Side Effects of Tinorpicin</h2>
+    <div class="card-grid">
+        <div class="card">💭 Losing track of time</div>
+        <div class="card">🖊️ Excessive movement of pens</div>
+        <div class="card">📁 Submitting projects early</div>
+        <div class="card">🗓️ Overplanning</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>When to Take Tinorpicin</h2>
+    <div class="card-grid">
+        <div class="card">📢 When deadlines are announced</div>
+        <div class="card">⌛ When procrastinating</div>
+    </div>
+    <h3>When Not to Take Tinorpicin</h3>
+    <div class="card-grid">
+        <div class="card">🎯 When already focused</div>
+        <div class="card">😌 When there's nothing to do</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Ingredients</h2>
+    <ul class="ingredients">
+        <li><strong>Motivation</strong> — 60 mg</li>
+        <li><strong>Caffeine</strong> — 2 mg</li>
+        <li><strong>Anti-Procrastinol</strong> — 10 mg</li>
+        <li><strong>Focusium</strong> — 12 mg</li>
+        <li><strong>Hyperserum</strong> — 5 mg</li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>⚡ Tinorpicin Helps Motivate and Stops Procrastination in as Fast as 7 Minutes!</h2>
+    <a class="buy-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+        Buy Now
+    </a>
+</section>
+
+<!-- 🎮 Tic Tac Toe -->
+<section class="section">
+  <h2>Play Tic Tac Toe</h2>
+  <div id="tic-tac-toe">
+    <div class="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+    <p id="status">Player X's turn</p>
+    <button id="restart">Restart</button>
   </div>
-
-  <div class="section">
-    <p>
-      While results may vary, most users feel more productive within 5-10 minutes of taking it,
-      making it a handy tool for tackling projects, study sessions, or busy workdays.
-    </p>
-  </div>
-
-  <div id="alchemy">
-    <h2>🧪 Tinorpicin Alchemy</h2>
-    <p>Combine bad traits to discover productivity!</p>
-    <div id="elements"></div>
-    <div id="selected">Selected: none</div>
-    <div><strong>Discovered Elements:</strong></div>
-    <div id="discovered"></div>
-  </div>
-
-  <a id="buy-now" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-    💸 Buy Now
-  </a>
+</section>
 
 <script>
-const recipes = {
-  "Procrastination+Laziness": "Cramming",
-  "Procrastination+Distraction": "Rushing",
-  "Laziness+Stress": "Panic",
-  "Stress+Distraction": "Burnout",
-  "Cramming+Panic": "Motivation",
-  "Motivation+Rushing": "Focus",
-  "Focus+Burnout": "Determination",
-  "Determination+Motivation": "Tinorpicin"
-};
+  const cells = document.querySelectorAll('.cell');
+  const statusText = document.getElementById('status');
+  const restartBtn = document.getElementById('restart');
+  let currentPlayer = 'X';
+  let board = Array(9).fill('');
+  let gameActive = true;
 
-let elements = ["Procrastination", "Laziness", "Stress", "Distraction"];
-let discovered = [...elements];
-let selected = [];
+  const winCombos = [
+    [0,1,2], [3,4,5], [6,7,8],
+    [0,3,6], [1,4,7], [2,5,8],
+    [0,4,8], [2,4,6]
+  ];
 
-const elContainer = document.getElementById("elements");
-const discContainer = document.getElementById("discovered");
-const selectedBox = document.getElementById("selected");
-
-function render() {
-  elContainer.innerHTML = "";
-  discovered.forEach(e => {
-    const div = document.createElement("div");
-    div.className = "element";
-    div.textContent = e;
-    div.onclick = () => selectElement(e);
-    elContainer.appendChild(div);
-  });
-  discContainer.innerHTML = discovered.join(", ");
-}
-
-function selectElement(e) {
-  selected.push(e);
-  if (selected.length === 2) {
-    combine(selected[0], selected[1]);
-    selected = [];
+  function handleClick(e) {
+    const i = e.target.dataset.index;
+    if (board[i] !== '' || !gameActive) return;
+    board[i] = currentPlayer;
+    e.target.textContent = currentPlayer;
+    if (checkWin()) {
+      statusText.textContent = `Player ${currentPlayer} Wins!`;
+      gameActive = false;
+    } else if (!board.includes('')) {
+      statusText.textContent = "It's a Draw!";
+      gameActive = false;
+    } else {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      statusText.textContent = `Player ${currentPlayer}'s turn`;
+    }
   }
-  selectedBox.textContent = "Selected: " + (selected.join(" + ") || "none");
-}
 
-function combine(a, b) {
-  const key1 = a + "+" + b;
-  const key2 = b + "+" + a;
-  let result = recipes[key1] || recipes[key2];
-  if (result && !discovered.includes(result)) {
-    discovered.push(result);
-    alert("You created " + result + "!");
-  } else if (!result) {
-    alert("Nothing happened...");
+  function checkWin() {
+    return winCombos.some(combo =>
+      combo.every(i => board[i] === currentPlayer)
+    );
   }
-  render();
-}
 
-render();
+  function restart() {
+    board.fill('');
+    cells.forEach(cell => cell.textContent = '');
+    currentPlayer = 'X';
+    statusText.textContent = "Player X's turn";
+    gameActive = true;
+  }
+
+  cells.forEach(cell => cell.addEventListener('click', handleClick));
+  restartBtn.addEventListener('click', restart);
 </script>
 
 </body>
