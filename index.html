@@ -211,103 +211,6 @@
         <div class="card">😌 When there's nothing to do</div>
     </div>
 </section>
-
-<section class="section">
-    <h2>Ingredients</h2>
-    <ul class="ingredients">
-        <li><strong>Motivation</strong> — 60 mg</li>
-        <li><strong>Caffeine</strong> — 2 mg</li>
-        <li><strong>Anti-Procrastinol</strong> — 10 mg</li>
-        <li><strong>Focusium</strong> — 12 mg</li>
-        <li><strong>Hyperserum</strong> — 5 mg</li>
-    </ul>
-</section>
-
-    <section id="alchemy-game" class="section">
-  <h2>🧪 Cure the Chaos</h2>
-  <p>Combine negative traits to discover positive ones — and create the ultimate productivity formula!</p>
-
-  <div id="inventory" style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:30px;"></div>
-
-  <div id="result" style="margin-top:30px; font-weight:600; color:#555;"></div>
-</section>
-
-<script>
-const combos = {
-  // negative
-  "Procrastination+Panic": "Motivation",
-  "Laziness+Distraction": "Focus",
-  "Panic+Distraction": "Adrenaline",
-  "Procrastination+Laziness": "Guilt",
-  "Guilt+Motivation": "Productivity",
-  "Focus+Coffee": "Hyperfocus",
-  "Productivity+Hyperfocus": "Success",
-  "Success+Motivation": "Inspiration",
-  "Inspiration+Energy": "Hustle",
-  "Hustle+Focus": "Flow",
-  "Flow+Time": "Efficiency",
-  "Efficiency+Energy": "Momentum",
-  "Momentum+Motivation": "Unstoppable",
-  "Productivity+Adrenaline": "Coffee",
-
-  // chain new things
-  "Motivation+Coffee": "Energy",
-  "Adrenaline+Coffee": "Energy",
-  "Energy+Productivity": "Time"
-};
-
-let discovered = ["Procrastination","Laziness","Distraction","Panic"];
-
-const inv = document.getElementById('inventory');
-const result = document.getElementById('result');
-
-function renderInventory() {
-  inv.innerHTML = '';
-  discovered.forEach(item=>{
-    const el = document.createElement('div');
-    el.textContent = item;
-    el.style.padding = "10px 15px";
-    el.style.background = "linear-gradient(135deg, #6fd3f7, #f8a5c2)";
-    el.style.color = "white";
-    el.style.borderRadius = "12px";
-    el.style.cursor = "grab";
-    el.draggable = true;
-    el.addEventListener('dragstart', e=>{
-      e.dataTransfer.setData('text/plain', item);
-    });
-    inv.appendChild(el);
-  });
-}
-
-inv.addEventListener('dragover', e=>e.preventDefault());
-inv.addEventListener('drop', e=>{
-  e.preventDefault();
-  const itemA = e.dataTransfer.getData('text/plain');
-  const itemBEl = e.target.closest('div');
-  if(!itemBEl) return;
-  const itemB = itemBEl.textContent;
-
-  if(itemA===itemB) return;
-
-  const combo1 = itemA + "+" + itemB;
-  const combo2 = itemB + "+" + itemA;
-  let newItem = combos[combo1] || combos[combo2];
-
-  if(newItem) {
-    if(!discovered.includes(newItem)){
-      discovered.push(newItem);
-      result.textContent = `🎉 You discovered: ${newItem}!`;
-    } else {
-      result.textContent = `✅ ${newItem} already discovered.`;
-    }
-    renderInventory();
-  } else {
-    result.textContent = "❌ That combo doesn't work… try something else!";
-  }
-});
-
-renderInventory();
-</script>
     
 <section class="section">
     <h2>⚡ Tinorpicin Helps Motivate and Stops Procrastination in as Fast as 7 Minutes!</h2>
@@ -318,9 +221,158 @@ renderInventory();
     </a>
 </section>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anti-Procrastination Alchemy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #elements, #discovered {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .element {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .element:hover {
+      background: #e0ffe0;
+      transform: scale(1.05);
+    }
+    #combine-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧪 Anti-Procrastination Alchemy</h1>
+  <p>Select two elements to combine:</p>
+
+  <div id="elements"></div>
+  <button id="combine-btn">Combine</button>
+
+  <h2>Discovered Elements</h2>
+  <div id="discovered"></div>
+
+  <script>
+    const recipes = {
+      "Procrastination+Laziness": "Unproductivity",
+      "Procrastination+Stress": "Burnout",
+      "Procrastination+Distraction": "Time Loss",
+      "Laziness+Stress": "Overthinking",
+      "Laziness+Distraction": "Daydreaming",
+      "Stress+Distraction": "Anxiety",
+
+      // positive path
+      "Burnout+Motivation": "Recovery",
+      "Time Loss+Focus": "Productivity",
+      "Daydreaming+Ideas": "Creativity",
+      "Creativity+Motivation": "Project",
+      "Project+Persistence": "Success",
+
+      // how to get new useful elements
+      "Anxiety+Break": "Calmness",
+      "Overthinking+Plan": "Focus",
+      "Unproductivity+Coffee": "Motivation",
+      "Calmness+Motivation": "Flow",
+      "Flow+Project": "Achievement"
+    };
+
+    let baseElements = ["Procrastination","Laziness","Stress","Distraction","Coffee","Break","Plan","Ideas","Persistence"];
+
+    let discovered = new Set(baseElements);
+
+    const elementsDiv = document.getElementById('elements');
+    const discoveredDiv = document.getElementById('discovered');
+    const combineBtn = document.getElementById('combine-btn');
+
+    let selected = [];
+
+    function renderElements() {
+      elementsDiv.innerHTML = '';
+      discovered.forEach(el => {
+        const btn = document.createElement('div');
+        btn.className = 'element';
+        btn.textContent = el;
+        btn.onclick = () => selectElement(el, btn);
+        elementsDiv.appendChild(btn);
+      });
+      renderDiscovered();
+    }
+
+    function renderDiscovered() {
+      discoveredDiv.innerHTML = '';
+      discovered.forEach(el => {
+        const span = document.createElement('div');
+        span.className = 'element';
+        span.textContent = el;
+        discoveredDiv.appendChild(span);
+      });
+    }
+
+    function selectElement(el, btn) {
+      if (selected.length < 2) {
+        selected.push(el);
+        btn.style.background = '#d0ffd0';
+      }
+    }
+
+    combineBtn.onclick = () => {
+      if (selected.length !== 2) return alert('Select 2 elements!');
+      const combo = selected.sort().join('+');
+      let result = recipes[combo];
+      if (!result) {
+        // also try reverse combo
+        const reverse = selected.reverse().join('+');
+        result = recipes[reverse];
+      }
+      if (result) {
+        if (!discovered.has(result)) {
+          discovered.add(result);
+          alert('You discovered: ' + result + ' 🎉');
+        } else {
+          alert(result + ' already discovered!');
+        }
+      } else {
+        alert('Nothing happened...');
+      }
+      selected = [];
+      renderElements();
+    };
+
+    renderElements();
+  </script>
 
 </body>
 </html>
+
+
+
+</body>
+</html>
+
 
 
 
