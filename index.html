@@ -223,6 +223,82 @@
     </ul>
 </section>
 
+    <section id="alchemy-game" style="text-align:center; padding:40px; background:linear-gradient(135deg,#ff9a9e,#fad0c4); border-radius:20px; margin:30px auto; width:80%;">
+  <h2 style="color:#fff; font-size:2rem; margin-bottom:10px;">🧪 Procrastination Alchemy</h2>
+  <p style="color:#fff;">Combine bad habits to create powerful positive ones!</p>
+
+  <div id="elements" style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+    <div class="element" draggable="true" data-name="Procrastination" style="background:#ff6b6b;">🛋️ Procrastination</div>
+    <div class="element" draggable="true" data-name="Laziness" style="background:#f783ac;">😴 Laziness</div>
+    <div class="element" draggable="true" data-name="Distraction" style="background:#4dabf7;">📱 Distraction</div>
+    <div class="element" draggable="true" data-name="Stress" style="background:#ffe066;">😰 Stress</div>
+  </div>
+
+  <div id="discoveries" style="margin-top:30px; color:white; font-size:1.2rem;"></div>
+</section>
+
+<style>
+  .element {
+    width:120px;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    cursor:grab;
+    font-weight:bold;
+    color:white;
+    text-align:center;
+    user-select:none;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+    padding:10px;
+  }
+  .element:active { cursor:grabbing; }
+</style>
+
+<script>
+  const combos = {
+    "Procrastination+Laziness": "🧠 Idea Spark",
+    "Procrastination+Distraction": "⏰ Deadline Rush",
+    "Procrastination+Stress": "💥 Motivation Burst",
+    "Laziness+Distraction": "🌀 Daydream",
+    "Laziness+Stress": "🧘 Chill Mode",
+    "Distraction+Stress": "📋 Focus Plan",
+    "Laziness+Motivation Burst": "⚡ Productivity",
+    "Deadline Rush+Focus Plan": "🏆 Success"
+  };
+
+  const elements = document.querySelectorAll('.element');
+  const discoveries = document.getElementById('discoveries');
+  let dragged = null;
+
+  elements.forEach(el => {
+    el.addEventListener('dragstart', () => dragged = el);
+    el.addEventListener('dragover', e => e.preventDefault());
+    el.addEventListener('drop', () => {
+      if (dragged && dragged !== el) {
+        const comboKey = `${dragged.dataset.name}+${el.dataset.name}`;
+        const comboKeyRev = `${el.dataset.name}+${dragged.dataset.name}`;
+        const result = combos[comboKey] || combos[comboKeyRev];
+        if (result) {
+          discoveries.innerHTML += `<div>✨ ${dragged.dataset.name} + ${el.dataset.name} → ${result}</div>`;
+          // Add new element to play with
+          const newEl = document.createElement('div');
+          newEl.className = 'element';
+          newEl.draggable = true;
+          newEl.dataset.name = result;
+          newEl.textContent = result;
+          newEl.style.background = '#94d82d';
+          document.getElementById('elements').appendChild(newEl);
+          newEl.addEventListener('dragstart', () => dragged = newEl);
+          newEl.addEventListener('dragover', e => e.preventDefault());
+          newEl.addEventListener('drop', () => {});
+        }
+      }
+    });
+  });
+</script>
+    
 <section class="section">
     <h2>⚡ Tinorpicin Helps Motivate and Stops Procrastination in as Fast as 7 Minutes!</h2>
 
@@ -235,3 +311,4 @@
 
 </body>
 </html>
+
