@@ -4,129 +4,144 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tinorpicin — No Delay</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-    * {
-        box-sizing: border-box;
+    *{box-sizing:border-box}
+    body{
+        margin:0;
+        font-family:'Poppins',sans-serif;
+        background:#fafafa;
+        color:#333;
     }
 
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: #fdfbfb;
-        color: #333;
+    header{
+        background:linear-gradient(135deg,#4facfe,#f093fb); /* Blue to pink */
+        color:white;
+        text-align:center;
+        padding:60px 20px 80px;
+        position:relative;
+        overflow:hidden;
+        box-shadow:0 6px 15px rgba(0,0,0,0.15);
+    }
+    header::after{
+        content:"💊";
+        position:absolute;
+        font-size:120px;
+        opacity:0.08;
+        top:10px;right:20px;
+        transform:rotate(-20deg);
+    }
+    header h1{
+        margin:0;
+        font-size:3rem;
+        font-weight:700;
+        text-shadow:0 2px 4px rgba(0,0,0,0.2);
+    }
+    header h2{
+        margin-top:10px;
+        font-weight:500;
+        color:#fffbe6;
+        text-shadow:0 1px 3px rgba(0,0,0,0.25);
+    }
+    header p{
+        color:#fff;
+        opacity:0.9;
     }
 
-    header {
-        background: linear-gradient(135deg, #ff6fd8, #38f9d7);
-        color: white;
-        text-align: center;
-        padding: 60px 20px 80px;
-        position: relative;
-        overflow: hidden;
+    .section{
+        padding:70px 20px;
+        text-align:center;
+        animation:fadeIn 0.7s ease both;
+        background:#ffffff;
+        box-shadow:0 6px 12px rgba(0,0,0,0.05);
+        margin-bottom:40px;
+    }
+    .section:nth-child(even){
+        background:linear-gradient(135deg,#4facfe,#f093fb); /* Blue to pink */
+        color:#333;
     }
 
-    header::after {
-        content: "💊";
-        position: absolute;
-        font-size: 120px;
-        opacity: 0.15;
-        top: 10px;
-        right: 20px;
-        transform: rotate(-20deg);
+    h2{
+        margin-bottom:25px;
+        color:#444;
+        text-shadow:0 1px 2px rgba(0,0,0,0.1);
+        font-size:2rem;
     }
 
-    header h1 {
-        margin: 0;
-        font-size: 3rem;
-        font-weight: 700;
-        text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    p{
+        max-width:700px;
+        margin:0 auto 25px;
+        line-height:1.7;
+        font-size:1.1rem;
+        color:#555;
     }
 
-    header h2 {
-        margin-top: 10px;
-        font-weight: 500;
-        color: #fffbe6;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    .card-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:25px;
+        justify-items:center;
+        padding:20px 0;
     }
 
-    <head>
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 25px;
-        justify-items: center;
-        padding: 20px 0;
+    .card{
+        background:linear-gradient(135deg,#4facfe,#f093fb); /* Blue to pink */
+        padding:20px 25px;
+        border-radius:18px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        width:100%;
+        max-width:300px;
+        transition:transform 0.2s, box-shadow 0.2s;
+        color:#fff;
+        font-weight:600;
+    }
+    .card:hover{
+        transform:translateY(-6px);
+        box-shadow:0 8px 18px rgba(0,0,0,0.2);
     }
 
-    .card {
-        background: linear-gradient(135deg, #ffecd2, #fcb69f);
-        padding: 20px 25px;
-        border-radius: 18px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        width: 100%;
-        max-width: 300px;
-        transition: transform 0.2s, box-shadow 0.2s;
-        color: #333;
-        font-weight: 600;
+    ul.ingredients{
+        list-style:none;
+        padding:25px 30px;
+        margin:0 auto;
+        max-width:400px;
+        background:linear-gradient(135deg,#4facfe,#f093fb); /* Blue to pink */
+        border-radius:18px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.1);
+        text-align:left;
+        color:#fff;
+    }
+    ul.ingredients li{
+        padding:10px 0;
+        border-bottom:1px solid rgba(255,255,255,0.3);
+        font-weight:500;
+    }
+    ul.ingredients li:last-child{
+        border-bottom:none;
     }
 
-    .section:nth-child(even) .card {
-        background: linear-gradient(135deg, #fddb92, #d1fdff);
-        color: #222;
+    .buy-btn{
+        display:inline-block;
+        margin-top:40px;
+        background:linear-gradient(135deg,#4facfe,#f093fb); /* Blue to pink */
+        color:white;
+        text-decoration:none;
+        font-weight:600;
+        padding:18px 40px;
+        border-radius:50px;
+        letter-spacing:0.5px;
+        font-size:1.1rem;
+        box-shadow:0 4px 10px rgba(0,0,0,0.2);
+        transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .buy-btn:hover{
+        transform:scale(1.05);
+        box-shadow:0 8px 18px rgba(0,0,0,0.25);
     }
 
-    .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 16px rgba(0,0,0,0.2);
-    }
-
-    ul.ingredients {
-        list-style: none;
-        padding: 25px 30px;
-        margin: 0 auto;
-        max-width: 400px;
-        background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
-        border-radius: 18px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        text-align: left;
-        color: #222;
-    }
-
-    ul.ingredients li {
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.4);
-        font-weight: 500;
-    }
-
-    ul.ingredients li:last-child {
-        border-bottom: none;
-    }
-
-    .buy-btn {
-        display: inline-block;
-        margin-top: 40px;
-        background: linear-gradient(135deg, #ff61a6, #845ec2);
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        padding: 18px 40px;
-        border-radius: 50px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        transition: transform 0.2s, box-shadow 0.2s;
-        font-size: 1.1rem;
-        letter-spacing: 0.5px;
-    }
-
-    .buy-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 10px 18px rgba(0,0,0,0.25);
-    }
-
-    @keyframes fadeIn {
-        from {opacity: 0; transform: translateY(10px);}
-        to {opacity: 1; transform: translateY(0);}
+    @keyframes fadeIn{
+        from{opacity:0;transform:translateY(10px);}
+        to{opacity:1;transform:translateY(0);}
     }
 </style>
 </head>
@@ -149,66 +164,6 @@
         <div class="card">😞 Guilt or frustration</div>
     </div>
 </section>
-    
-<section class="section">
-    <h2>What Does Tinorpicin Do?</h2>
-    <p>Tinorpicin is the cure for late submissions and midnight cramming. With its fast-acting motivational formula, it clears mental fog, boosts focus, and turns "later" into "now." Perfect for anyone struggling to start tasks, Tinorpicin encourages productive habits and helps you tackle your day with energy and motivation.</p>
-</section>
-
-<section class="section">
-    <h2>Fun Facts About Tinorpicin</h2>
-    <p>Tinorpicin works quickly to help users focus and get started on tasks they've been procrastinating on. Many users said it increased their motivation, organization, and a noticeable reduction in distractions. While results may vary, most users feel more productive within 5–10 minutes of taking it, making it a handy tool for tackling projects, study sessions, or busy workdays.</p>
-</section>
-
-<section class="section">
-    <h2>The Side Effects of Tinorpicin</h2>
-    <div class="card-grid">
-        <div class="card">💭 Losing track of time</div>
-        <div class="card">🖊️ Excessive movement of pens</div>
-        <div class="card">📁 Submitting projects early</div>
-        <div class="card">🗓️ Overplanning</div>
-    </div>
-</section>
-
-<section class="section">
-    <h2>When to Take Tinorpicin</h2>
-    <div class="card-grid">
-        <div class="card">📢 When deadlines are announced</div>
-        <div class="card">⌛ When procrastinating</div>
-    </div>
-    <h3>When Not to Take Tinorpicin</h3>
-    <div class="card-grid">
-        <div class="card">🎯 When already focused</div>
-        <div class="card">😌 When there's nothing to do</div>
-    </div>
-</section>
-
-<section class="section">
-    <h2>Ingredients</h2>
-    <ul class="ingredients">
-        <li><strong>Motivation</strong> — 60 mg</li>
-        <li><strong>Caffeine</strong> — 2 mg</li>
-        <li><strong>Anti-Procrastinol</strong> — 10 mg</li>
-        <li><strong>Focusium</strong> — 12 mg</li>
-        <li><strong>Hyperserum</strong> — 5 mg</li>
-    </ul>
-</section>
-
-<section class="section">
-    <h2>⚡ Tinorpicin Helps Motivate and Stops Procrastination in as Fast as 7 Minutes!</h2>
-    <a class="buy-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        Buy Now
-    </a>
-</section>
-
-<section class="section">
-  <h2>Want More Fun?</h2>
-  <a class="buy-btn" href="https://sean111111111vrotato.github.io/2048/" target="_blank">
-      Play 2048
-  </a>
-</section>
 
 </body>
 </html>
-
-
