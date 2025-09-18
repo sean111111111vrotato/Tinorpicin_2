@@ -14,15 +14,15 @@
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
-        background: #f8fafc;
+        background: #fdfbfb;
         color: #333;
     }
 
     header {
-        background: linear-gradient(135deg, #6fd3f7, #f8a5c2);
+        background: linear-gradient(135deg, #ff6fd8, #38f9d7);
         color: white;
         text-align: center;
-        padding: 50px 20px 60px;
+        padding: 60px 20px 80px;
         position: relative;
         overflow: hidden;
     }
@@ -30,8 +30,8 @@
     header::after {
         content: "💊";
         position: absolute;
-        font-size: 100px;
-        opacity: 0.2;
+        font-size: 120px;
+        opacity: 0.15;
         top: 10px;
         right: 20px;
         transform: rotate(-20deg);
@@ -39,73 +39,92 @@
 
     header h1 {
         margin: 0;
-        font-size: 2.5rem;
-        font-weight: 600;
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
 
     header h2 {
         margin-top: 10px;
-        font-weight: 400;
+        font-weight: 500;
+        color: #fffbe6;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .section {
-        padding: 60px 20px;
+        padding: 70px 20px;
         text-align: center;
         animation: fadeIn 0.7s ease both;
     }
 
+    /* Alternating color sections */
+    .section:nth-child(odd) {
+        background: linear-gradient(135deg, #fceabb, #f8b500);
+    }
     .section:nth-child(even) {
-        background: #f0f9ff;
+        background: linear-gradient(135deg, #c3ec52, #0ba29d);
+        color: #fff;
     }
 
     h2 {
-        margin-bottom: 20px;
-        color: #444;
+        margin-bottom: 25px;
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
 
     p {
-        max-width: 650px;
-        margin: 0 auto 20px;
-        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto 25px;
+        line-height: 1.7;
+        font-size: 1.1rem;
     }
 
     .card-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
+        gap: 25px;
         justify-items: center;
         padding: 20px 0;
     }
 
     .card {
-        background: white;
-        padding: 15px 20px;
-        border-radius: 14px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        background: linear-gradient(135deg, #ffecd2, #fcb69f);
+        padding: 20px 25px;
+        border-radius: 18px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         width: 100%;
         max-width: 300px;
-        transition: transform 0.2s;
+        transition: transform 0.2s, box-shadow 0.2s;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .section:nth-child(even) .card {
+        background: linear-gradient(135deg, #fddb92, #d1fdff);
+        color: #222;
     }
 
     .card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-6px);
+        box-shadow: 0 10px 16px rgba(0,0,0,0.2);
     }
 
     ul.ingredients {
         list-style: none;
-        padding: 0;
-        margin: 0 auto;
-        max-width: 350px;
-        background: white;
-        border-radius: 14px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        text-align: left;
         padding: 25px 30px;
+        margin: 0 auto;
+        max-width: 400px;
+        background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+        border-radius: 18px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        text-align: left;
+        color: #222;
     }
 
     ul.ingredients li {
-        padding: 8px 0;
-        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.4);
+        font-weight: 500;
     }
 
     ul.ingredients li:last-child {
@@ -115,78 +134,26 @@
     .buy-btn {
         display: inline-block;
         margin-top: 40px;
-        background: linear-gradient(135deg, #ff82b2, #6fd3f7);
+        background: linear-gradient(135deg, #ff61a6, #845ec2);
         color: white;
         text-decoration: none;
         font-weight: 600;
-        padding: 15px 35px;
+        padding: 18px 40px;
         border-radius: 50px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         transition: transform 0.2s, box-shadow 0.2s;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
     }
 
     .buy-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        transform: scale(1.08);
+        box-shadow: 0 10px 18px rgba(0,0,0,0.25);
     }
 
     @keyframes fadeIn {
         from {opacity: 0; transform: translateY(10px);}
         to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* --- Tic Tac Toe --- */
-    #tic-tac-toe {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        margin-top: 40px;
-    }
-
-    .board {
-        display: grid;
-        grid-template-columns: repeat(3, 100px);
-        gap: 5px;
-    }
-
-    .cell {
-        width: 100px;
-        height: 100px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.5rem;
-        cursor: pointer;
-        user-select: none;
-        transition: transform 0.1s;
-    }
-
-    .cell:hover {
-        transform: scale(1.05);
-        background: #f8f8f8;
-    }
-
-    #status {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-
-    #restart {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        background: #ff6b6b;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-
-    #restart:hover {
-        background: #ff4b4b;
     }
 </style>
 </head>
@@ -198,7 +165,7 @@
     <p>Unlock a world of speed and productivity!</p>
 </header>
 
-    <section class="section">
+<section class="section">
     <h2>What is Procrastination?</h2>
     <p>Procrastination is the act of delaying or avoiding tasks you need to do, even when you know they’re important. Instead of starting, you might scroll social media, play games, or wait until the last minute.</p>
     <p>While it might feel good in the moment, procrastination often leads to:</p>
@@ -270,5 +237,3 @@
 
 </body>
 </html>
-
-
