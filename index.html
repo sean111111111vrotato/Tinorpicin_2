@@ -170,6 +170,34 @@
   'Tinorpicin is the cure for late submissions and midnight cramming. With its fast-acting motivational formula, it clears mental fog, boosts focus, and turns "later" into "now." Perfect for anyone struggling to start tasks, Tinorpicin encourages productive habits and helps you tackle your day with energy and motivation.'
 );
 
+<script>
+function createSection(title, text = '', listItems = [], extraHTML = '') {
+    const section = document.createElement('section');
+    section.className = 'section'; // applies existing gradient/background styles
+
+    let innerHTML = `<h2>${title}</h2>`;
+    if (text) innerHTML += `<p>${text}</p>`;
+
+    if (listItems.length) {
+        innerHTML += '<div class="card-grid">';
+        listItems.forEach(item => {
+            innerHTML += `<div class="card">${item}</div>`;
+        });
+        innerHTML += '</div>';
+    }
+
+    if (extraHTML) innerHTML += extraHTML;
+
+    section.innerHTML = innerHTML;
+    document.body.appendChild(section);
+}
+
+// Now create your sections
+createSection(
+  'What Does Tinorpicin Do?',
+  'Tinorpicin is the cure for late submissions and midnight cramming. With its fast-acting motivational formula, it clears mental fog, boosts focus, and turns "later" into "now." Perfect for anyone struggling to start tasks, Tinorpicin encourages productive habits and helps you tackle your day with energy and motivation.'
+);
+
 createSection(
   'Fun Facts About Tinorpicin',
   'Tinorpicin works quickly to help users focus and get started on tasks they\'ve been procrastinating on. Many users said it increased their motivation, organization, and a noticeable reduction in distractions. While results may vary, most users feel more productive within 5–10 minutes of taking it, making it a handy tool for tackling projects, study sessions, or busy workdays.'
@@ -218,7 +246,9 @@ createSection(
   [],
   `<a class="buy-btn" href="https://sean111111111vrotato.github.io/2048/" target="_blank">Play 2048</a>`
 );
+</script>
 
 </body>
 </html>
+
 
